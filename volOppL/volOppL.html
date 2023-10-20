@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- linking the other files -->
+        <link rel="stylesheet" type="text/css" href="donOpp.css">
+        <script src="donOpp.js"></script>
+
+        <!-- metadata -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VolX</title>
+        <link rel="stylesheet" href="donOpp.css">
+        <script src="donOpp.js"></script>
+        </head>
+    
+    <body>
+        <p>VOLUNTEER OPPORTUNTIES LIST PAGE</p>
+    
+        <header>
+            <!-- Logo placeholder on top left -->
+            <div class="logo-placeholder"></div>
+            <!-- Centered title "volx" -->
+            <h1 class="centered-title">VolX</h1>
+        </header>
+
+
+        <!--Small Search Bar with previously entered Zip Code-->
+        <div class="input-section">
+            <div class="input-box">
+                <input type="text" id="zipCodeBox" placeholder="Zip Code" pattern="\d{5}" maxlength="5" title="Please enter a 6 digit zipcode">
+            </div>
+        </div>
+        
+        <!--Toggle Between Vol. Opp & Don. Opp-->
+        <div class="toggle-container">
+            <!--ADD CODE FOR NOT SELECTED BUTTON ON TOGGLE TO NOT LOOK GREYED OUT-->
+            <div class="tab">
+                <button class="tablinks" id="VolO">Volunteer Opportunities</button>
+                <button class="tablinks.active" id="DonO" onclick="oppTabToggle()">Donation Opportunities</button>
+            </div>
+        </div>
+
+        <!--Header for partners-->
+        <header>Partners</header>
+
+        <!--Partner Content-->
+        <header> CONTENT GOES HERE FOR PARTNERS </header>
+
+        <!--Header for crawled-->
+        <header>Crawled</header>
+
+        <!--Crawled content-->
+        <header> CONTENT GOES HERE FOR CRAWLED </header>
+
+        <!--Bottom toggle bar (list & calendar view)-->
+        <div class="toggle-container">
+            <!--ADD CODE FOR NOT SELECTED BUTTON ON TOGGLE TO NOT LOOK GREYED OUT-->
+            <div class="tab">
+                <button class="tablinks" id="Lst" >List Icon goes here</button>
+                <button class="tablinks.active" id="Cal" onclick="viewTabToggle()">Calendar Icon goes here</button>
+            </div>
+        </div>
+
+
+    </body>
+
+
+</html>
+
+<!--THINGS TO ADD:
+
+ ********Format to fit each device properly on CSS DONT USE PX*************
+-->

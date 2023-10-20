@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- linking the other files -->
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <script src="home.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolX</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="home.js"r></script>
+</head>
+<body>
+    
+    <header>
+        <!-- Logo placeholder on top left -->
+        <div class="logo-placeholder"></div>
+        <!-- Centered title "volx" -->
+        <h1 class="centered-title">VolX</h1>
+    </header>
+
+    <section class="content">
+        <!-- Input (zipcode) and filters section -->
+        <div class="input-section">
+            <div class="input-box">
+                <input type="text" id="textBox" placeholder="Zipcode" pattern="\d{5}" maxlength="5" title="Please enter a 6 digit zipcode">
+            </div>
+            
+            <div class="filters-box">
+                <div id="filters" onclick="toggleDropdown()">Filters</div>
+                <div id="filter-dropdown" class="dropdown-content">
+                    <a href="#" onclick="toggleOpp(); toggleDropdown()">Volunteer Opportunities</a>
+                    <a href="#" onclick="toggleOpp(); toggleDropdown()">Donation Opportunties</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="enter-box">
+            <button onclick="defineZipCode(); checkBoolean()">Enter</button>
+        </div>
+
+        <!-- Placeholder for image -->
+        <div class="image-placeholder"></div>
+        
+        
+        <!-- Grey line at the bottom -->
+        <div class="grey-line"></div>
+    </section>
+</body>
+
+</html>
+
+
+
+
+<!--THINGS TO ADD:
+ - CSS 
+ - Maybe background color on CSS
+ - Logo
+ - Image
+ - Punchline
+ - Search bar **(FIRST PRIORITY)**: 
+    - Small search icon near search box to enter
+    - When enter is clicked, route to "volOppL" @ pass variables for zipCode & all filters
+    - Zip code search bar should only accept numbers (can't type anything else)
+ - Filters (FOR THIS GO ONLINE AND LOOK AT HOW OTHER FILTER DROP DOWNS WORK -- MODEL OFF OF THAT):
+    - Fill out categories ((DEFAULT)none, food pantry, enviornmental service, educational service, homeless shelters, etc. (wtv you can think of))
+    - Fill out selection ((DEFAULT)Volunteer Opportunties/Donation Opportunties)
+    - Default information should be selected (no category & volunteer opps.)
+    - Information should be relayed when search button is clicked
+    
+
+ ********Format to fit each device properly on CSS DONT USE PX*************
+
+-->
