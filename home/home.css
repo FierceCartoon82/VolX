@@ -1,152 +1,91 @@
+/*body styling*/
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     font-size: 16px; /* Base font size for adaptability */
 }
 
+/*header & logo styling*/
 header {
+    height: 60px;
+    position: center;
+}
+
+.centered-logo {
     position: relative;
+    margin: 0 auto;
+    top: 10px;
+    bottom: 10px;
+    width: 120px;
+    height: auto;
 }
 
-
-/* Logo placeholder styles */
-.logo-placeholder {
-    width: 50px;
-    height: 50px;
-    background-color: #ddd; /* Light gray for visibility */
-    position: absolute;
-    top: 5px; /* Adjusted top placement */
-    left: 5px; /* Adjusted left placement */
-}
-
-.centered-title {
-    margin-top: 70px; /* Adjusted for logo placement */
-}
-
-/* Centered content section */
+/*content formatting*/
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-bottom: 1rem; /* Padding to ensure space for grey line */
 }
 
-/* Input and filters styles */
-.input-section {
-    display: flex;
-    gap: 80px; /* Space between input box and filters box */
-    margin: 20px 0;
+/* Image styling */
+.image-container {
+    width: 110%;
+    max-height: calc(100vh - 60px);
+    border: 0px;
 }
 
-.input-box, .filters-box {
-    height: 70px; /* Increased height */
-    width: 500px; /* Increased width */
-  /*  border: 1px solid #000; /* Black border for visibility */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem; /* Using rem for adaptability */
+.homeImg {
+    width: 100%; /* Set the image width to 100% of the parent container (the screen width) */
+    max-height: calc(100vh - 60px); 
+    object-fit: cover; /* Crop the image if it exceeds the maximum height */
 }
 
-/* Grey line at the bottom */
-.grey-line {
-    height: 2px;
-    background-color: grey;
+/*INPUT STYLING*/
+/* Style the container for the input box */
+.input-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 50%);
     width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-.filters-box {
-    position: relative; /* Makes it the reference for the absolute positioning of the dropdown */
+    height: 16px;
 }
 
-#filters {
-    padding: 8px 12px;
-  /*  border: 1px solid #000; */
-    cursor: pointer;
-    width: 100%; /* Makes sure it occupies full width of its container */
-    box-sizing: border-box; /* To include padding and border in the element's total width */
+.styled-input {
+    padding: 15px; /* 5% of the parent container's width */
+    border: 3px solid #ccc; /* 3px border */
+    border-radius: 10px;
+    font-size: 16px; /* 3% of the viewport width */
+    width: 40vw; /* 80% of the parent container's width */
+    height: 16px;
+    transition: border 0.3s;
+    margin-top: 10%;
 }
 
-#filters:hover {
-    background-color: #f5f5f5;
+/* Style the input box when it's in focus (clicked) */
+.styled-input:focus {
+    border-color: #186920;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    width: 100%; /* Matches the width of the parent .filters-box */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    left: 0;  /* Aligns dropdown with the left edge of the "Filters" box */
-    top: 100%;  /* Place it right below the "Filters" div */
-    border: 1px solid #000; /* Gives it a border similar to the "Filters" box */
-    border-top: none; /* Removes the top border so it looks continuous from the "Filters" box */
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-/* Adjustments for side-by-side placement of Zipcode and Filters */
-.input-section {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between zipcode box and filters box */
-    margin: 20px 0;
-}
-
-.input-box, .filters-box {
-    height: 70px;
-    width: 250px; /* Set width so they are the same size */
-    border: 1px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-}
-
-/* Style for enter box */
-.enter-box {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.enter-box input {
-    width: 420px; /* or adjust as needed */
+/* Style the search button */
+.search-button {
+    background-color: #186920; /* Green background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 10px;
     padding: 10px;
-    border: 1px solid #000;
-    font-size: 1rem;
-}
-
-.enter-box button {
-    padding: 10px 20px;
-    border: 1px solid #000;
     cursor: pointer;
-    background-color: #f5f5f5;
-    font-size: 1rem;
+    width: 5%; /* Adjust width as needed */
+    min-width: 50px;
 }
 
-.enter-box button:hover {
-    background-color: #ddd;
+/* Style the search button icon (Font Awesome) */
+.search-button i {
+    font-size: 20px;
 }
 
-/* Adjustments to the image placeholder size */
-.image-placeholder {
-    width: 300px; /* Adjusted width */
-    height: 300px; /* Adjusted height */
-    background-color: #ddd;
-    margin: 40px 0 20px 0; /* Added more margin at the top */
+/* Style the search button on hover for feedback */
+.search-button:hover {
+    background-color: #0b350f; /* Slightly darker green on hover */
 }
-

@@ -4,23 +4,68 @@ body {
     font-size: 16px; /* Base font size for adaptability */
 }
 
+/*header & logo styling*/
 header {
+    height: 60px;
+    position: center;
+}
+
+.centered-logo {
     position: relative;
+    margin: 0 auto;
+    top: 10px;
+    bottom: 10px;
+    width: 120px;
+    height: auto;
 }
 
-/* Logo placeholder styles */
-.logo-placeholder {
-    width: 50px;
-    height: 50px;
-    background-color: #ddd; /* Light gray for visibility */
+/*INPUT STYLING*/
+/* Style the container for the input box */
+.input-container {
     position: absolute;
-    top: 5px; /* Adjusted top placement */
-    left: 5px; /* Adjusted left placement */
+    top: 10px;
+    left: 10px;
+    width: 300px;
 }
 
-.centered-title {
-    margin-top: 70px; /* Adjusted for logo placement */
+.styled-input {
+    padding: 15px; /* 5% of the parent container's width */
+    border: 3px solid #ccc; /* 3px border */
+    border-radius: 10px;
+    font-size: 16px; /* 3% of the viewport width */
+    width: 40vw; /* 80% of the parent container's width */
+    height: 16px;
+    transition: border 0.3s;
+    margin-top: 10%;
 }
+
+/* Style the input box when it's in focus (clicked) */
+.styled-input:focus {
+    border-color: #186920;
+}
+
+/* Style the search button */
+.search-button {
+    background-color: #186920; /* Green background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    width: 5%; /* Adjust width as needed */
+    min-width: 50px;
+}
+
+/* Style the search button icon (Font Awesome) */
+.search-button i {
+    font-size: 20px;
+}
+
+/* Style the search button on hover for feedback */
+.search-button:hover {
+    background-color: #0b350f; /* Slightly darker green on hover */
+}
+
 
 /* Centered content section */
 .content {

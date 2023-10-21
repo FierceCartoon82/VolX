@@ -1,30 +1,27 @@
-function toggleDropdown() {
-    const dropdown = document.getElementById('filter-dropdown');
-    if (dropdown) {
-        if (dropdown.style.display === "none" || dropdown.style.display === "") {
-            dropdown.style.display = "block";
-        } else {
-            dropdown.style.display = "none";
-        }
-    }
-}
-
-// filters variable storage
+// variables
 let volOppTab = true;
 let zipCode = "00000";
-
-function toggleOpp() {
-    volOppTab = !volOppTab;
-    localStorage.setItem('volOppTab', volOppTab);
-}
 
 function defineZipCode() {
     zipCode = document.getElementById("textBox").value;
     localStorage.setItem('zipCode', zipCode);
+    alert(zipCode);
 }
+
+// route to next page
+function nextPg() {
+    // store text from textbox
+    defineZipCode();
+
+    // reroute to volOppList view
+    window.location.href = "../volOppL/volOppL.html"
+}
+
+
 
 /*
 COME BACK TO THIS LATER!!!
+Ensure that the numbers entered were a valid zip code
 
 function isProbablyValidUSZipCode(zip) {
     let patterns = ["#####", "#####-####", "##### ####", "#########"];
@@ -65,20 +62,6 @@ function isDigit(character) {
 }
 
 */
-
-
-function checkBoolean(){
-   // if (isDigit(zipCode) && checkAgainstPattern(zipCode) && isProbablyValidUSZipCode(zipCode)) {
-    if(volOppTab){
-        window.location.href = "../volOppL/volOppL.html"
-    }
-   
-    else {
-        window.location.href = "../donOpp/donOpp.html"
-    }
- 
-
-}
 
 
 //THIS IS HOW TO RETRIEVE THE VARIABLE FOR REFERENCE

@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- linking the other files -->
-        <link rel="stylesheet" type="text/css" href="donOpp.css">
-        <script src="donOpp.js"></script>
-
-        <!-- metadata -->
+        <!-- Metadata -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>VolX</title>
-        <link rel="stylesheet" href="donOpp.css">
-        <script src="donOpp.js"></script>
+        <title id="title">VolX</title>
+
+        <!-- Add 'Font Awesome' for styling purposes -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         </head>
     
     <body>
-        <p>VOLUNTEER OPPORTUNTIES LIST PAGE</p>
-    
         <header>
-            <!-- Logo placeholder on top left -->
-            <div class="logo-placeholder"></div>
-            <!-- Centered title "volx" -->
-            <h1 class="centered-title">VolX</h1>
+             <!-- Logo in center -->
+            <a href="../home/home.html"><img class="centered-logo" src="../images/VolXLogo.PNG" alt="logo"></a>
         </header>
 
 
         <!--Small Search Bar with previously entered Zip Code-->
-        <div class="input-section">
-            <div class="input-box">
-                <input type="text" id="zipCodeBox" placeholder="Zip Code" pattern="\d{5}" maxlength="5" title="Please enter a 6 digit zipcode">
+        <div class="input-container">
+            <div class="search-container">
+                <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode">
+                <button class="search-button" id="searchButton" onclick="nextPg()">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
         </div>
         
@@ -62,6 +58,9 @@
         </div>
 
 
+        <!-- linking to JS & CSS -->
+        <script scr="volOppL.js"></script>
+        <link rel="stylesheet" href="volOppL.css">
     </body>
 
 

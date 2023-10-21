@@ -1,53 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- linking the other files -->
-    <link rel="stylesheet" type="text/css" href="home.css">
-    <script src="home.js"></script>
+    <!-- Add 'Font Awesome' for styling purposes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VolX</title>
-    <link rel="stylesheet" href="home.css">
-    <script src="home.js"r></script>
+    <title id="title">VolX</title>
+
 </head>
 <body>
     
     <header>
-        <!-- Logo placeholder on top left -->
-        <div class="logo-placeholder"></div>
-        <!-- Centered title "volx" -->
-        <h1 class="centered-title">VolX</h1>
+        <!-- Logo in center -->
+        <a href="../home/home.html"><img class="centered-logo" src="../images/VolXLogo.PNG" alt="logo"></a>
     </header>
 
     <section class="content">
-        <!-- Input (zipcode) and filters section -->
-        <div class="input-section">
-            <div class="input-box">
-                <input type="text" id="textBox" placeholder="Zipcode" pattern="\d{5}" maxlength="5" title="Please enter a 6 digit zipcode">
-            </div>
-            
-            <div class="filters-box">
-                <div id="filters" onclick="toggleDropdown()">Filters</div>
-                <div id="filter-dropdown" class="dropdown-content">
-                    <a href="#" onclick="toggleOpp(); toggleDropdown()">Volunteer Opportunities</a>
-                    <a href="#" onclick="toggleOpp(); toggleDropdown()">Donation Opportunties</a>
+        <!-- Add image 
+        NEEDS TO HAVE A FOCUS IN THE CENTER-->
+        <div class="image-container">
+            <img class="homeImg" src="../images/longPlaceHolderTest.jpeg">
+            <!-- Search bar container -->
+            <div class="input-container">
+                <div class="search-container">
+                    <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode">
+                    <button class="search-button" id="searchButton" onclick="nextPg()">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
             </div>
         </div>
-
-        <div class="enter-box">
-            <button onclick="defineZipCode(); checkBoolean()">Enter</button>
-        </div>
-
-        <!-- Placeholder for image -->
-        <div class="image-placeholder"></div>
         
-        
-        <!-- Grey line at the bottom -->
-        <div class="grey-line"></div>
     </section>
+
+    <!-- linking to JS & CSS -->
+    <script scr="home.js"></script>
+    <link rel="stylesheet" href="home.css">
 </body>
 
 </html>
