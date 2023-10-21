@@ -3,7 +3,7 @@ let volOppTab = true;
 let zipCode = "00000";
 
 function defineZipCode() {
-    zipCode = document.getElementById("textBox").value;
+    zipCode = document.getElementById("textBox").value.trim();
     localStorage.setItem('zipCode', zipCode);
 }
 

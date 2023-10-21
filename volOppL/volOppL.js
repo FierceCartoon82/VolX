@@ -1,18 +1,18 @@
 // variables
+let txtBx = document.getElementById("textBox");
 let zipCode = localStorage.getItem("zipCode");
 localStorage.setItem("listView", true);
+txtBx.placeholder = "Volunteer Opportunities in " + zipCode;
 
 
 // searchZip
 function defineZipCode() {
-    alert("WE HERE");
     let txtBx = document.getElementById("textBox");
-    alert(txtBx.placeholder);
-    txtBx.placeholder = "Volunteer Opportunities in" + zipCode;
-    alert(txtBx.placeholder);
-
-    zipCode = document.getElementById("textBox").value;
+    zipCode = txtBx.value;
     localStorage.setItem('zipCode', zipCode);
+    txtBx.placeholder = "Volunteer Opportunities in " + zipCode;
+    txtBx.value = "";
+
 }
 
 // opportunty type tab toggle *CHANGE THE LINK*
