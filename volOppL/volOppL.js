@@ -3,6 +3,17 @@ let zipCode = localStorage.getItem("zipCode");
 localStorage.setItem("listView", true);
 
 
+// searchZip
+function defineZipCode() {
+    alert("WE HERE");
+    let txtBx = document.getElementById("textBox");
+    alert(txtBx.placeholder);
+    txtBx.placeholder = "Volunteer Opportunities in" + zipCode;
+    alert(txtBx.placeholder);
+
+    zipCode = document.getElementById("textBox").value;
+    localStorage.setItem('zipCode', zipCode);
+}
 
 // opportunty type tab toggle *CHANGE THE LINK*
 function oppTabToggle() {
@@ -16,10 +27,7 @@ function viewTabToggle() {
     window.location.href = "../volOppC/volOppC.html";
 }
 
-function defineZipCode() {
-    zipCode = document.getElementById("textBox").value;
-    localStorage.setItem('zipCode', zipCode);
-}
+
 
 function toggleDropdown() {
     const dropdown = document.getElementById('filter-dropdown');

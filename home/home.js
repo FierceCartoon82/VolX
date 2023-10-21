@@ -5,11 +5,16 @@ let zipCode = "00000";
 function defineZipCode() {
     zipCode = document.getElementById("textBox").value;
     localStorage.setItem('zipCode', zipCode);
-    alert(zipCode);
 }
 
 // route to next page
 function nextPg() {
+    //alert the user if they do not enter a valid zipCode
+    if (!isProbablyValidUSZipCode(zipCode)) {
+        alert("Please enter a valid ZIP code.");
+        return; // stops the function from proceeding to the redirection
+    }
+
     // store text from textbox
     defineZipCode();
 
@@ -17,16 +22,17 @@ function nextPg() {
     window.location.href = "../volOppL/volOppL.html"
 }
 
+function isProbablyValidUSZipCode(zipCode) {
+    // First, check with the regex method for quick validation
+    let regex = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    if (regex.test(zipCode)) {
+        return true;
+    }
 
-
-/*
-COME BACK TO THIS LATER!!!
-Ensure that the numbers entered were a valid zip code
-
-function isProbablyValidUSZipCode(zip) {
-    let patterns = ["#####", "#####-####", "##### ####", "#########"];
-    for (let i = 0; i < patterns.length; i++) {
-        if (checkAgainstPattern(zip, patterns[i])) {
+    // If regex test fails, then check against your original patterns
+    let patterns = ["#####", "#####-####"];
+    for (let pattern of patterns) {
+        if (checkAgainstPattern(zipCode, pattern)) {
             return true;
         }
     }
@@ -34,13 +40,13 @@ function isProbablyValidUSZipCode(zip) {
 }
 
 
-function checkAgainstPattern(zipString, pattern) {
-    if (zipString.length !== pattern.length) {
+function checkAgainstPattern(zipCode, pattern) {
+    if (zipCode.length !== pattern.length) {
         return false;
     }
 
     for (let i = 0; i < pattern.length; i++) {
-        let c = zipString.charAt(i);
+        let c = zipCode.charAt(i);
         switch (pattern.charAt(i)) {
             case '#':
                 if (!isDigit(c)) {
@@ -57,11 +63,13 @@ function checkAgainstPattern(zipString, pattern) {
     return true;
 }
 
+
 function isDigit(character) {
     return character >= '0' && character <= '9';
 }
 
-*/
+
+
 
 
 //THIS IS HOW TO RETRIEVE THE VARIABLE FOR REFERENCE

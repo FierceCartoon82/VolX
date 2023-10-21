@@ -19,12 +19,10 @@
 
         <!--Small Search Bar with previously entered Zip Code-->
         <div class="input-container">
-            <div class="search-container">
                 <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode">
-                <button class="search-button" id="searchButton" onclick="nextPg()">
+                <button class="search-button" id="searchButton" onclick="defineZipCode()">
                     <i class="fas fa-search"></i>
                 </button>
-            </div>
         </div>
         
         <!--Toggle Between Vol. Opp & Don. Opp-->
@@ -32,7 +30,7 @@
             <!--ADD CODE FOR NOT SELECTED BUTTON ON TOGGLE TO NOT LOOK GREYED OUT-->
             <div class="tab">
                 <button class="tablinks" id="VolO">Volunteer Opportunities</button>
-                <button class="tablinks.active" id="DonO" onclick="oppTabToggle()">Donation Opportunities</button>
+                <button class="tablinks.active" id="DonO" onClick="oppTabToggle()">Donation Opportunities</button>
             </div>
         </div>
 

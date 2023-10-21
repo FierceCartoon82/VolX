@@ -22,10 +22,12 @@ header {
 /*INPUT STYLING*/
 /* Style the container for the input box */
 .input-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 300px;
+    display: flex;
+    position: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+    z-index: 1;
 }
 
 .styled-input {
@@ -33,10 +35,9 @@ header {
     border: 3px solid #ccc; /* 3px border */
     border-radius: 10px;
     font-size: 16px; /* 3% of the viewport width */
-    width: 40vw; /* 80% of the parent container's width */
+    width: 100vw; /* 80% of the parent container's width */
     height: 16px;
     transition: border 0.3s;
-    margin-top: 10%;
 }
 
 /* Style the input box when it's in focus (clicked) */
@@ -53,6 +54,7 @@ header {
     padding: 10px;
     cursor: pointer;
     width: 5%; /* Adjust width as needed */
+    margin-left: 5px;
     min-width: 50px;
 }
 
@@ -76,6 +78,24 @@ header {
     padding-bottom: 1rem; /* Padding to ensure space for grey line */
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Input and filters styles */
 .input-section {
     display: flex;
@@ -93,53 +113,6 @@ header {
     font-size: 1rem; /* Using rem for adaptability */
 }
 
-/* Grey line at the bottom */
-.grey-line {
-    height: 2px;
-    background-color: grey;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-.filters-box {
-    position: relative; /* Makes it the reference for the absolute positioning of the dropdown */
-}
-
-#filters {
-    padding: 8px 12px;
-  /*  border: 1px solid #000; */
-    cursor: pointer;
-    width: 100%; /* Makes sure it occupies full width of its container */
-    box-sizing: border-box; /* To include padding and border in the element's total width */
-}
-
-#filters:hover {
-    background-color: #f5f5f5;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    width: 100%; /* Matches the width of the parent .filters-box */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    left: 0;  /* Aligns dropdown with the left edge of the "Filters" box */
-    top: 100%;  /* Place it right below the "Filters" div */
-    border: 1px solid #000; /* Gives it a border similar to the "Filters" box */
-    border-top: none; /* Removes the top border so it looks continuous from the "Filters" box */
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
 
 /* Adjustments for side-by-side placement of Zipcode and Filters */
 .input-section {
@@ -157,33 +130,6 @@ header {
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-}
-
-/* Style for enter box */
-.enter-box {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.enter-box input {
-    width: 420px; /* or adjust as needed */
-    padding: 10px;
-    border: 1px solid #000;
-    font-size: 1rem;
-}
-
-.enter-box button {
-    padding: 10px 20px;
-    border: 1px solid #000;
-    cursor: pointer;
-    background-color: #f5f5f5;
-    font-size: 1rem;
-}
-
-.enter-box button:hover {
-    background-color: #ddd;
 }
 
 
