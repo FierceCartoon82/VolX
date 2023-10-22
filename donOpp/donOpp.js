@@ -2,7 +2,7 @@
 let txtBx = document.getElementById("textBox");
 let zipCode = localStorage.getItem("zipCode");
 localStorage.setItem("listView", false);
-txtBx.placeholder = "Donation Opportunities near ";
+txtBx.placeholder = "Donation Opportunities near " + zipCode;
 
 
 // searchZip

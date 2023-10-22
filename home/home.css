@@ -1,33 +1,36 @@
-/*body styling*/
+/* Remove background from the body */
 body {
     font-family: 'Quicksand';
     text-align: center;
-    font-size: 16px; /* Base font size for adaptability */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    background-image: url("../images/VolXBackground.jpg"); /* Replace 'your-image.jpg' with your image URL */
-    background-size: cover; /* Cover the entire viewport */
-    background-position: center; /* Center the background image */
-    background-attachment: fixed; /* Fixed background image */
-    background-repeat: no-repeat; /* Prevent background image from repeating */
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/VolXBackground.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white; /* Set text color to white */
 }
 
-/*header & logo styling*/
+/* Header and logo styling */
 header {
     height: 60px;
-    position: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
 }
 
 .centered-logo {
-    position: relative;
-    margin: 0 auto;
-    top: 10px;
-    bottom: 10px;
-    width: 120px;
+    position: absolute;
+    top: 20px; /* Adjust the top position to move it down */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px; /* Increase the logo width */
     height: auto;
 }
 
-/*content formatting*/
+/* Content formatting */
 .content {
     display: flex;
     flex-direction: column;
@@ -38,18 +41,17 @@ header {
 /* Image styling */
 .image-container {
     width: 110%;
-    max-height: ca100vh;
+    max-height: 100vh;
     border: 0px;
 }
 
-.homeImg {
-    width: 100%; /* Set the image width to 100% of the parent container (the screen width) */
-    max-height: 100vh; 
-    object-fit: cover; /* Crop the image if it exceeds the maximum height */
+homeImg {
+    width: 100%;
+    max-height: 100vh;
+    object-fit: cover;
 }
 
-/*INPUT STYLING*/
-/* Style the container for the input box */
+/* Input styling */
 .input-container {
     position: absolute;
     top: 30%;
@@ -60,14 +62,15 @@ header {
 }
 
 .styled-input {
-    padding: 15px; /* 5% of the parent container's width */
-    border: 3px solid #ccc; /* 3px border */
+    padding: 15px;
+    border: 3px solid #ccc;
     border-radius: 10px;
-    font-size: 16px; /* 3% of the viewport width */
-    width: 40vw; /* 80% of the parent container's width */
+    font-size: 16px;
+    width: 40vw;
     height: 16px;
     transition: border 0.3s;
     margin-top: 10%;
+    color: #000; /* Set input text color to black */
 }
 
 /* Style the input box when it's in focus (clicked) */
@@ -77,13 +80,13 @@ header {
 
 /* Style the search button */
 .search-button {
-    background-color: #186920; /* Green background color */
-    color: #fff; /* White text color */
+    background-color: #186920;
+    color: white; /* Set text color to white */
     border: none;
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
-    width: 5%; /* Adjust width as needed */
+    width: 5%;
     min-width: 50px;
 }
 
@@ -94,5 +97,5 @@ header {
 
 /* Style the search button on hover for feedback */
 .search-button:hover {
-    background-color: #0b350f; /* Slightly darker green on hover */
+    background-color: #0b350f;
 }
