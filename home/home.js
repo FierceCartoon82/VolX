@@ -9,6 +9,7 @@ function defineZipCode() {
 
 // route to next page
 function nextPg() {
+    defineZipCode();
     //alert the user if they do not enter a valid zipCode
     if (!isProbablyValidUSZipCode(zipCode)) {
         alert("Please enter a valid ZIP code.");
