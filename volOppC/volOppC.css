@@ -1,6 +1,55 @@
+/*header & logo styling*/
+header {
+    height: 60px;
+    position: center;
+}
+
+.centered-logo {
+    position: relative;
+    margin: 0 auto;
+    top: 10px;
+    bottom: 10px;
+    width: 120px;
+    height: auto;
+}
 
 
-/* STYLING FOR TABS */ 
+/* Calendar CSS (colors n things of that nature)*/
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+th, td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+}
+
+th {
+  background-color: #333;
+  color: #fff;
+}
+
+td {
+  height: 100px;
+  /* Move numbers to top-right and make them smaller */
+  position: relative;
+  font-size: 12px;
+}
+
+td .number {
+  position: absolute;
+  top: 5px; /* Adjust the top value to move the numbers closer to the top */
+  right: 5px; /* Adjust the right value to move the numbers closer to the right */
+  font-size: 10px; /* You can adjust the font size as needed */
+}
+
 
 .tab {
     overflow: hidden;
@@ -32,4 +81,43 @@
     border: 1px solid #ccc;
     border-top: none;
   }
+
+  /* Styles for the bottom tab bar */
+.bottom-tab-bar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #3e7e38;
+  position: fixed;
+  bottom: 0;
+  width: 110%;
+  height: 7.5%;
+  left: -1%;
+  z-index: 1;
+  box-shadow: 0px -3px 10px rgba(8, 8, 8, 0.2);
+}
+
+.bottom-tab-button {
+  padding: 10px 20px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  background-color: #16691f;
+  border: 1px solid #6b6b6b;
+  border-radius: 15px;
+}
+
+/* Style for the active tab */
+.active {
+  background-color: #124c18;
+  border: .5px solid #6b6b6b;
+}
+
+/* Hover effect for buttons */
+.bottom-tab-button:hover {
+  background-color: #264025;
+}
+
 

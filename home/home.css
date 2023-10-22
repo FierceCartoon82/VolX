@@ -1,8 +1,15 @@
 /*body styling*/
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Quicksand';
     text-align: center;
     font-size: 16px; /* Base font size for adaptability */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-image: url("../images/VolXBackground.jpg"); /* Replace 'your-image.jpg' with your image URL */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Fixed background image */
+    background-repeat: no-repeat; /* Prevent background image from repeating */
 }
 
 /*header & logo styling*/
@@ -31,13 +38,13 @@ header {
 /* Image styling */
 .image-container {
     width: 110%;
-    max-height: calc(100vh - 60px);
+    max-height: ca100vh;
     border: 0px;
 }
 
 .homeImg {
     width: 100%; /* Set the image width to 100% of the parent container (the screen width) */
-    max-height: calc(100vh - 60px); 
+    max-height: 100vh; 
     object-fit: cover; /* Crop the image if it exceeds the maximum height */
 }
 

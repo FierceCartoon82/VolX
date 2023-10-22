@@ -2,7 +2,7 @@
 let txtBx = document.getElementById("textBox");
 let zipCode = localStorage.getItem("zipCode");
 localStorage.setItem("listView", true);
-txtBx.placeholder = "Volunteer Opportunities in " + zipCode;
+txtBx.placeholder = "Volunteer Opportunities near " + zipCode;
 
 
 // searchZip
@@ -10,7 +10,7 @@ function defineZipCode() {
     let txtBx = document.getElementById("textBox");
     zipCode = txtBx.value;
     localStorage.setItem('zipCode', zipCode);
-    txtBx.placeholder = "Volunteer Opportunities in " + zipCode;
+    txtBx.placeholder = "Volunteer Opportunities near " + zipCode;
     txtBx.value = "";
 
 }
@@ -27,15 +27,3 @@ function viewTabToggle() {
     window.location.href = "../volOppC/volOppC.html";
 }
 
-
-
-function toggleDropdown() {
-    const dropdown = document.getElementById('filter-dropdown');
-    if (dropdown) {
-        if (dropdown.style.display === "none" || dropdown.style.display === "") {
-            dropdown.style.display = "block";
-        } else {
-            dropdown.style.display = "none";
-        }
-    }
-}

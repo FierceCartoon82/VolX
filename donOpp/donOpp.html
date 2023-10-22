@@ -5,54 +5,57 @@
         <link rel="stylesheet" type="text/css" href="donOpp.css">
         <script src="donOpp.js"></script>
 
+        <!-- Add 'Font Awesome' for styling purposes -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
         <!-- metadata -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>VolX</title>
-        <link rel="stylesheet" href="donOpp.css">
-        <script src="donOpp.js"></script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand" />
+
         </head>
     
     <body>
-        <p>DONATION OPPORTUNTIES PAGE</p>
-    
         <header>
-            <!-- Logo placeholder on top left -->
-            <div class="logo-placeholder"></div>
-            <!-- Centered title "volx" -->
-            <h1 class="centered-title">VolX</h1>
-        </header>
-
+            <!-- Logo in center -->
+           <a href="../volOppL/volOppL.html"><img class="centered-logo" src="../images/VolXLogo.PNG" alt="logo"></a>
+       </header>
 
         <!--Small Search Bar with previously entered Zip Code-->
-        <div class="input-section">
-            <div class="input-box">
-                <input type="text" id="zipCodeBox" placeholder="Zip Code" pattern="\d{5}" maxlength="5" title="Please enter a 6 digit zipcode">
-            </div>
+        <div class="input-container">
+            <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode">
+            <button class="search-button" id="searchButton" onclick="defineZipCode()">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
         
         <!--Toggle Between Vol. Opp & Don. Opp-->
-        <div class="toggle-container">
+        <div class="tab-container">
             <!--ADD CODE FOR NOT SELECTED BUTTON ON TOGGLE TO NOT LOOK GREYED OUT-->
             <div class="tab">
-                <button class="tablinks" id="VolO" onclick="oppTabToggle()">Volunteer Opportunities</button>
-                <button class="tablinks.active" id="DonO">Donation Opportunities</button>
+                <button class="tab-button" id="VolO" onClick="oppTabToggle()">Volunteer Opportunities</button>
+                <button class="tab-button active" id="DonO">Donation Opportunities</button>
             </div>
         </div>
 
         <!--Header for partners-->
-        <header>Partners</header>
+        <h2 class="quicksand-header sectionTitle left-align">VolX Partner Organizations</h2>
 
         <!--Partner Content-->
         <header> CONTENT GOES HERE FOR PARTNERS </header>
 
         <!--Header for crawled-->
-        <header>Crawled</header>
+        <h2 class="quicksand-header sectionTitle left-align">Other Nearby Organizations</h2>
 
         <!--Crawled content-->
         <header> CONTENT GOES HERE FOR CRAWLED </header>
 
        
+        <!-- Link CSS and JS -->
+        <link rel="stylesheet" href="donOpp.css">
+        <script src="donOpp.js"></script>
     </body>
 
 

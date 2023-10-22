@@ -1,0 +1,21 @@
+[debug] [2023-10-22T03:00:04.111Z] ----------------------------------------------------------------------
+[debug] [2023-10-22T03:00:04.114Z] Command:       /usr/local/Cellar/node/20.8.1/bin/node /usr/local/bin/firebase init
+[debug] [2023-10-22T03:00:04.115Z] CLI Version:   12.7.0
+[debug] [2023-10-22T03:00:04.115Z] Platform:      darwin
+[debug] [2023-10-22T03:00:04.115Z] Node Version:  v20.8.1
+[debug] [2023-10-22T03:00:04.115Z] Time:          Sat Oct 21 2023 23:00:04 GMT-0400 (Eastern Daylight Time)
+[debug] [2023-10-22T03:00:04.115Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-10-22T03:00:04.119Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-10-22T03:00:04.120Z] > authorizing via signed-in user (7ibraheem@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/ibraheemshaikh/Desktop/VolunteerExchange/VolX
+
