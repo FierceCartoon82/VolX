@@ -123,42 +123,36 @@ header {
 
 
 
-/* Styles for the bottom tab bar */
-.bottom-tab-bar {
+
+/* Results section */
+.results-section {
     display: flex;
-    justify-content: space-around;
-    background-color: #3e7e38;
-    position: fixed;
-    bottom: 0;
-    width: 110%;
-    height: 7.5%;
-    left: -1%;
-    z-index: 1;
-    box-shadow: 0px -3px 10px rgba(8, 8, 8, 0.2);
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Space between each result */
+    margin-top: 20px;
+    padding-bottom: 20px; /* To give some breathing space at the bottom */
 }
 
-.bottom-tab-button {
-    padding: 10px 20px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    background-color: #16691f;
-    border: 1px solid #6b6b6b;
-    border-radius: 15px;
+.result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw; /* Make it responsive to viewport width */
+    background-color: #f7f7f7; /* Light grey background for each card */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
-/* Style for the active tab */
-.active {
-    background-color: #124c18;
-    border: .5px solid #6b6b6b;
+.result-card a {
+    color: #186920; /* Giving it the same green color as the search button */
+    text-decoration: none; /* Removing underline from link */
 }
 
-/* Hover effect for buttons */
-.bottom-tab-button:hover {
-    background-color: #264025;
+.result-card a:hover {
+    text-decoration: underline; /* Underline on hover for feedback */
 }
+
 
 

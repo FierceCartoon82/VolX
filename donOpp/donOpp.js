@@ -1,5 +1,6 @@
 // variables
 let txtBx = document.getElementById("textBox");
+localStorage.setItem("zipCode", parseInt(localStorage.getItem("zipCode")));
 let zipCode = localStorage.getItem("zipCode");
 localStorage.setItem("listView", false);
 txtBx.placeholder = "Donation Opportunities near " + zipCode;
@@ -9,7 +10,7 @@ txtBx.placeholder = "Donation Opportunities near " + zipCode;
 function defineZipCode() {
     let txtBx = document.getElementById("textBox");
     zipCode = txtBx.value;
-    localStorage.setItem('zipCode', zipCode);
+    localStorage.setItem('zipCode', parseInt(zipCode));
     txtBx.placeholder = "Donation Opportunities near " + zipCode;
     txtBx.value = "";
 
@@ -21,4 +22,6 @@ function oppTabToggle() {
     window.location.href = "../volOppL/volOppL.html";
 }
 
-
+function goToHomeScreen() {
+    window.location.href = "../home/home.html"; 
+}

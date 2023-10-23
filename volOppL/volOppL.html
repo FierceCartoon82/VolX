@@ -16,17 +16,18 @@
     
     <body>
         <header>
-             <!-- Logo in center -->
-            <img class="centered-logo" src="../images/VolXLogo.PNG" alt="logo">
+            <!-- Logo in center with an onclick event to return to the home screen -->
+            <img class="centered-logo" src="../images/VolXLogo.PNG" alt="logo" onclick="goToHomeScreen()">
         </header>
 
 
         <!--Small Search Bar with previously entered Zip Code-->
         <div class="input-container">
-                <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode">
-                <button class="search-button" id="searchButton" onclick="defineZipCode()">
-                    <i class="fas fa-search"></i>
-                </button>
+            <div class="search-container"></div>
+            <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode" onkeydown="handleEnterKeyPress(event)">
+            <button class="search-button" id="searchButton" onclick="defineZipCode()">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
         
         <!--Toggle Between Vol. Opp & Don. Opp-->
@@ -42,19 +43,50 @@
         <h2 class="sectionTitles" align="left">VolX Partner Organizations</h2>
 
         <!--Partner Content-->
-        <header> CONTENT GOES HERE FOR PARTNERS </header>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Organization Name</th>
+                    <th>Next Volunteer Opportunity date</th>
+                    <th>Next Volunteer Opportunity time</th>
+                    <th>Next Volunteer Opportunity location</th>
+                    <th>Website</th>
+                    <th>Phone #</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Org. Name</td>
+                    <td>Date</td>
+                    <td>Time</td>
+                    <td>Location</td>
+                    <td>Website</td>
+                    <td>Phone #</td>
+                </tr>
+                <!-- Other rows... -->
+            </tbody>
+        </table>
+        
+
+
+
+
+
+
+
+
+
 
         <!--Header for crawled-->
         <h2 class="sectionTitles" align="left">Other Nearby Organizations</h2>
 
-        <!--Crawled content-->
-        <header> CONTENT GOES HERE FOR CRAWLED </header>
+        <!-- Crawled content -->
+        <div id="results" class="results-section"></div>
 
-        <!-- Bottom tab bar (Calendar & List)-->
-        <div class="bottom-tab-bar">
-            <button class="bottom-tab-button active"><i class="fa-solid fa-list"></i></button>
-            <button class="bottom-tab-button" onclick="viewTabToggle()"><i class="fa-regular fa-calendar"></i></button>
-        </div>
+        <!-- Linking to firebase -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-firestore.js"></script>
+
 
         <!-- linking to JS & CSS -->
         <script src="volOppL.js"></script>
@@ -64,7 +96,3 @@
 
 </html>
 
-<!--THINGS TO ADD:
-
- ********Format to fit each device properly on CSS DONT USE PX*************
--->

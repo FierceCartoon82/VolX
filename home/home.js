@@ -69,6 +69,13 @@ function isDigit(character) {
     return character >= '0' && character <= '9';
 }
 
+function handleEnterKeyPress(event) {
+    if (event.key === "Enter") {
+        nextPg();
+    }
+}
+
+
 
 
 

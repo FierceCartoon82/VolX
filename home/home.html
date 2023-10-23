@@ -25,7 +25,7 @@
             <!-- Search bar container -->
             <div class="input-container">
                 <div class="search-container">
-                    <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode">
+                    <input id="textBox" class="styled-input" type="text" placeholder="Enter your Zipcode" pattern="\d{5}" maxlength="9" title="Enter a zipcode" onkeydown="handleEnterKeyPress(event)">
                     <button class="search-button" id="searchButton" onclick="nextPg()">
                         <i class="fas fa-search"></i>
                     </button>
