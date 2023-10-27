@@ -1,6 +1,6 @@
 // variables
 let txtBx = document.getElementById("textBox");
-localStorage.setItem("zipCode", parseInt(localStorage.getItem("zipCode")));
+localStorage.setItem("zipCode", localStorage.getItem("zipCode")); // add parseint() if required
 let zipCode = localStorage.getItem("zipCode");
 localStorage.setItem("listView", false);
 txtBx.placeholder = "Donation Opportunities near " + zipCode;
@@ -10,7 +10,7 @@ txtBx.placeholder = "Donation Opportunities near " + zipCode;
 function defineZipCode() {
     let txtBx = document.getElementById("textBox");
     zipCode = txtBx.value;
-    localStorage.setItem('zipCode', parseInt(zipCode));
+    localStorage.setItem('zipCode', zipCode); // add parseint() if required
     txtBx.placeholder = "Donation Opportunities near " + zipCode;
     txtBx.value = "";
 

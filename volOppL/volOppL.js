@@ -1,59 +1,11 @@
 // ----- Variable Declarations -----
 let txtBx = document.getElementById("textBox");
-localStorage.setItem("zipCode", parseInt(localStorage.getItem("zipCode")));
+localStorage.setItem("zipCode", localStorage.getItem("zipCode")); // add parseint() if required
 let zipCode = localStorage.getItem("zipCode");
+console.log(zipCode);
 localStorage.setItem("listView", true);
 
-// ----- Function Declarations -----
-//THIS ISNT WORKING RIGHT NOW
-//IBRAHEEM NEEDS TO DO THE ZIPCODE TO LAT LONG FUNCTION
-// Convert zipcode to Latitude and Longitude
-    // Replace this with actual implementation
-    // Example: return {latitude: 37.7749, longitude: -122.4194};
-    // Import Axios library to make HTTP requests (you need to include Axios in your project).
-const axios = require('axios');
 
-// Define your Google Geocoding API key.
-const API_KEY = 'AIzaSyBgiraRrh_2CcYYH1HRipAIycrE_cqlfKA';
-
-// Function to convert a zip code to latitude and longitude coordinates.
-async function zipcodeToLatLong(ZCode) {
-  try {
-    // Construct the request URL for the Google Geocoding API.
-    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${ZCode}&key=${API_KEY}`;
-
-    // Make an HTTP GET request to the API.
-    const response = await axios.get(apiUrl);
-
-    // Check if the request was successful.
-    if (response.data.status === 'OK') {
-      // Extract latitude and longitude from the response.
-      const location = response.data.results[0].geometry.location;
-      const latitude = location.lat;
-      const longitude = location.lng;
-      return { latitude, longitude };
-    } else {
-      // Handle error cases.
-      console.error('Error geocoding the ZIP code:', response.data.status);
-      return null;
-    }
-  } catch (error) {
-    console.error('Error making the API request:', error);
-    return null;
-  }
-}
-
-// Define the zipcode and search for opportunities based on it
-function defineZipCode() {
-    let txtBx = document.getElementById("textBox");
-    zipCode = txtBx.value;
-    localStorage.setItem('zipCode', parseInt(zipCode));
-    txtBx.placeholder = "Volunteer Opportunities near " + zipCode;
-    txtBx.value = "";
-
-    let coords = zipcodeToLatLong(zipCode);
-    searchPlacesNearLocation(coords.latitude, coords.longitude);
-}
 
 function nextPg() {
     defineZipCode(zipCode);
@@ -77,31 +29,47 @@ function handleEnterKeyPress(event) {
     }
 }
 
-// Function to be executed after ZIP code validation
-function afterZipCodeValidation() {
-    // Store text from the textbox if needed
-    defineZipCode(zipCode);
 
-    // Call the redirection function
-    redirectToVolOppL();
-}
-
-// Example of how to use the modified nextPg function
-nextPg(afterZipCodeValidation);
-
-// Rest of your code remains the same
 function isProbablyValidUSZipCode(zipCode) {
-    // ... (unchanged)
+    // First, check with the regex method for quick validation
+    let regex = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    if (regex.test(zipCode)) {
+        return true;
+    }
+
+    // If regex test fails, then check against your original patterns
+    let patterns = ["#####", "#####-####"];
+    for (let pattern of patterns) {
+        if (checkAgainstPattern(zipCode, pattern)) {
+            return true;
+        }
+    }
+    return false;
 }
+
 
 function checkAgainstPattern(zipCode, pattern) {
-    // ... (unchanged)
-}
+    if (zipCode.length !== pattern.length) {
+        return false;
+    }
 
-function isDigit(character) {
-    // ... (unchanged)
-}
+    for (let i = 0; i < pattern.length; i++) {
+        let c = zipCode.charAt(i);
+        switch (pattern.charAt(i)) {
+            case '#':
+                if (!isDigit(c)) {
+                    return false;
+                }
+                break;
 
+            default:
+                if (c !== pattern.charAt(i)) {
+                    return false;
+                }
+        }
+    }
+    return true;
+}
 
 function isDigit(character) {
     return character >= '0' && character <= '9';
@@ -118,54 +86,6 @@ function oppTabToggle() {
 }
 
 
-// Search for places near the location based on latitude and longitude
-function searchPlacesNearLocation(latitude, longitude) {
-    //const apiKey = [insertApiCodeHere!!]; 
-    const radius = 50000;  // 50km radius
-    const type = 'point_of_interest'; 
-    const keyword = 'volunteer'; 
-
-    const endpoint = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=${type}&keyword=${keyword}&key=${apiKey}`;
-    
-    fetch(endpoint)
-    .then(response => response.json())
-    .then(data => {
-        if (data.results && data.results.length) {
-            const promises = data.results.slice(0, 4).map(place => getPlaceDetails(place.place_id, apiKey));
-            Promise.all(promises)
-                .then(details => displayResults(details));
-        } else {
-            console.error("No places found or error occurred.");
-        }
-    })
-    .catch(error => {
-        console.error("Error fetching places:", error);
-    });
-}
-
-// Get the detailed information about a place
-function getPlaceDetails(placeId, apiKey) {
-    const detailsEndpoint = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,website&key=${apiKey}`;
-    return fetch(detailsEndpoint)
-        .then(response => response.json())
-        .then(data => data.result)
-        .catch(error => console.error("Error fetching place details:", error));
-}
-
-// Display the fetched results on the webpage
-function displayResults(placesDetails) {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = ''; // Clear previous results
-    placesDetails.forEach(place => {
-        const websiteLink = place.website ? `<a href="${place.website}" target="_blank">${place.website}</a>` : 'No website available';
-        resultsDiv.innerHTML += `
-            <div class="result-card">
-                <strong>${place.name}</strong>
-                <p>Website: ${websiteLink}</p>
-            </div>
-        `;
-    });
-}
 
 
 
@@ -202,70 +122,107 @@ function getItemsFromFirestore() {
         });
 }
 
+
 // Use an async function to wait for the Firestore data to be fetched
-async function fetchData() {
+async function fetchData(apiZipCodes) {
     try {
         itemsArray = await getItemsFromFirestore();
-        console.log(itemsArray); // comment this after debugging
+        displayVolOpp(apiZipCodes);
     } catch (error) {
         console.error(error);
     }
 }
 
-fetchData(); // Call the function to fetch and display data
+// USE ZIPCODE BASE TO RETURN LIST OF ZIPCODES WITHIN A DISTANCE OF 25 MILES
+// construct API url
+/*const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=321891d0-745c-11ee-983d-014c610a2320&code=${zipCode}&radius=40&country=us`;
 
-// function to calculate distance between two points
-function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the Earth in kilometers
+// Make the API request
+fetch(zcApiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    // 'data.results' to get array for list of zipCodes in the range
 
-    const dLat = (lat2 - lat1) * (Math.PI / 180);
-    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    fetchData(data); // Call the function to fetch and display data from Firebase (pass the ZipCode in the parameter)
+  })
+  .catch(error => {
+    // Handle errors here
+    console.error('Error:', error);
+  });
+*/
+  
 
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-              Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+//fetchData(); // Call the function to fetch and display data
 
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    const distance = R * c; // Distance in kilometers
+// call function to run after data is fetched
 
-    return distance;
-}
+function displayVolOpp(data) {
+    console.log(data);
+    console.log(data.results);
+    // go through every row in database
+    for (let r = 0; r < itemsArray.length; r++) {
+        // check if row is volunteer opportunities
+        // (if first letter of V/D is 'v' then confirm)
+        if (itemsArray[r].V_or_D.charAt(0).toLowerCase() === 'v') {
+            // get last 5 digits of address (for the ZipCode)
+            // first convert the digits to integer
+            console.log("yes it is volunteer");
+            console.log(itemsArray[r]);
+            let volOppZipCode = itemsArray[r].location.slice(-5);
+            let inRange = false;
+            let distance = 0;
+            console.log(volOppZipCode);
+            
+            // for loop to check that zipCode is within radius
+            // first check if the entered ZipCode is the same
+            console.log("check if entered zipCode same as seeking zipCode")
+            if (zipCode === volOppZipCode) {
+                inRange = true;
+                console.log("entered was same as volOppZC");
+                console.log(inRange);
+            } else {
+                // loop through each value in array
+                for (let i = 0; i < data.results.length; i++) {
+                    if (data.results[i].location === volOppZipCode) {
+                        inRange = true;
+                        distance = data.results[i].distance;
+                        console.log(inRange + " " + distance);
 
-// go through every row in database
-for (let r = 0; r < myArray.length; r++) {
-    // check if row is volunteer opportunities
-    // (if first letter of V/D is 'v' then confirm)
-    console.log(r);
-    if (myArray[r][5].charAt(0).toLowerCase() === 'v') {
-        // get last 5 digits of address (for the ZipCode)
-        // first convert the digits to integer
-        let volOppZipCode = parseInt(myArray[r][1].slice(-5));
-        console.log(volOppZipCode);
-        
-        // check the distance between the zipCode that is user-entered and the item on the database
-        let volOppLat = 1; // placeholder; really call the function to define lon & lat based on ZipCode
-        let volOppLon = 1;// placeholder; really call the function to define lon & lat based on ZipCode
-        let localLat = 2;// placeholder; really call the function to define lon & lat based on ZipCode
-        let localLon = 2;// placeholder; really call the function to define lon & lat based on ZipCode
+                        break;
+                    }
+                }
+            }
 
-        console.log(calculateDistance(volOppLat, volOppLon, localLat, localLon));
-        // if the distance is under a certain amount then proceed
-        if (calculateDistance(volOppLat, volOppLon, localLat, localLon) < 50) {
-            // create new row
-            const newRow = table.insertRow();
 
-            // fill out data
-            newRow.insertCell(0).textContent = myArray[r][2];
-            newRow.insertCell(1).textContent = myArray[r][0];
-            newRow.insertCell(2).textContent = myArray[r][4];
-            newRow.insertCell(3).textContent = myArray[r][1];
-            newRow.insertCell(4).textContent = myArray[r][6];
-            newRow.insertCell(5).textContent = myArray[r][3];
+            // if the distance is under a certain amount then proceed
+            if (inRange) {
+                console.log("we made it to the data spot!")
+                // store data for opportuntity then display
+                let orgName = itemsArray[r].organizationName;
+                let oppDate = itemsArray[r].date;
+                let oppTime = itemsArray[r].time;
+                let oppLocation = itemsArray[r].location;
+                let oppDistance = distance;
+                let orgSite = itemsArray[r].website;
+                let orgPhoneNum = itemsArray[r].phoneNum;
+
+                console.log("orgName" + orgName +
+                " oppDate" + oppDate 
+                + " oppTime" + oppTime
+                + " oppLocation" + oppLocation
+                + " oppDistance" + oppDistance 
+                + " orgSite" + orgSite
+                + " orgp#" + orgPhoneNum);
+            }
         }
     }
 }
-
 
 
 
