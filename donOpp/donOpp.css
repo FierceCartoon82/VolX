@@ -8,8 +8,9 @@ body {
 header {
     height: 60px;
     position: center;
-}
+} 
 
+/*centers logo*/
 .centered-logo {
     position: relative;
     margin: 0 auto;
