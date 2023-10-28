@@ -9,94 +9,6 @@ txtBx.placeholder = "Donation Opportunities near " + zipCode;
 const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=321891d0-745c-11ee-983d-014c610a2320&code=${zipCode}&radius=40&country=us`;
 
 
-function defineZipCode() {
-    let txtBx = document.getElementById("textBox");
-    zipCode = txtBx.value;
-    localStorage.setItem('zipCode', zipCode); // add parseint() if required
-    txtBx.placeholder = "Donation Opportunities near " + zipCode;
-    txtBx.value = "";
-
-    // reload from database
-    fetchData(databaseArray);
-}
-
-function nextPg() {
-    defineZipCode(zipCode);
-
-    // Validate the ZIP code and execute the callback if it's valid
-    if (isProbablyValidUSZipCode(zipCode)) {
-    } else {
-        alert("Please enter a valid ZIP code.");
-    }
-}
-
-// Modify this function to include the redirection logic
-function redirectToVolOppL() {
-    // Redirect to the volOppList view
-    window.location.href = "../volOppL/volOppL.html";
-}
-
-function handleEnterKeyPress(event) {
-    if (event.key === "Enter") {
-        nextPg();
-    }
-}
-
-
-function isProbablyValidUSZipCode(zipCode) {
-    // First, check with the regex method for quick validation
-    let regex = /^[0-9]{5}(?:-[0-9]{4})?$/;
-    if (regex.test(zipCode)) {
-        return true;
-    }
-
-    // If regex test fails, then check against your original patterns
-    let patterns = ["#####", "#####-####"];
-    for (let pattern of patterns) {
-        if (checkAgainstPattern(zipCode, pattern)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
-function checkAgainstPattern(zipCode, pattern) {
-    if (zipCode.length !== pattern.length) {
-        return false;
-    }
-
-    for (let i = 0; i < pattern.length; i++) {
-        let c = zipCode.charAt(i);
-        switch (pattern.charAt(i)) {
-            case '#':
-                if (!isDigit(c)) {
-                    return false;
-                }
-                break;
-
-            default:
-                if (c !== pattern.charAt(i)) {
-                    return false;
-                }
-        }
-    }
-    return true;
-}
-
-function isDigit(character) {
-    return character >= '0' && character <= '9';
-}
-
-
-// Toggle opportunity type tab
-function oppTabToggle() {
-    localStorage.setItem('volOppTab', !localStorage.getItem("volOppTab"));
-    window.location.href = "../donOpp/donOpp.html";
-}
-
-
-
 // JAVASCRIPT FOR VOLX PARTNERS:
 // Table for data from the database
 // FIREBASE ACCESS
@@ -236,20 +148,33 @@ function displayVolOpp(data) {
                 
                 const cardsContainer = document.getElementById("cards-container");
 
+                const cardLink = document.createElement("a");
+                cardLink.href = orgSite;
+                cardLink.target = "_blank";
+                
                 const card = document.createElement("div");
                 card.className = "card";
+            
 
+
+
+                // Wrap the card container with an anchor element and set the href
                 const cardContent = `
-                    <h4><a href="${orgSite}" target="_blank">${orgName}</a></h4>
-                    <p>Distance: ${oppDistance}</p>
-                    <p>Date: ${oppDate} | Time: ${oppTime}</p>
-                    <p>Location: ${oppLocation}</p>
-                    <p>Phone #: ${orgPhoneNum}</p>
-                    
-                `
+                    <a href="${orgSite}" target="_blank">
+                        <div class="card-content">
+                        <!-- Inside the card content -->
+                        <h4 class="card-header"> <a href="${orgSite}" target="_blank">${orgName}</a> </h4>
+                            <p>Distance: ${Math.round((oppDistance * 0.621371) * 10) / 10} mi</p>
+                            <p>Date: ${oppDate} | Time: ${oppTime}</p>
+                            <p>Location: ${oppLocation}</p>
+                            <p>Phone #: ${orgPhoneNum}</p>
+                        </div>
+                    </a>
+                `;
 
                 card.innerHTML = cardContent;
-                cardsContainer.appendChild(card);
+                cardLink.appendChild(card);
+                cardsContainer.appendChild(cardLink);
                     };
                 }
                 
@@ -273,7 +198,91 @@ function goToHomeScreen() {
     window.location.href = "../home/home.html"; 
 }
  
+function defineZipCode() {
+    let txtBx = document.getElementById("textBox");
+    zipCode = txtBx.value;
+    localStorage.setItem('zipCode', zipCode); // add parseint() if required
+    txtBx.placeholder = "Donation Opportunities near " + zipCode;
+    txtBx.value = "";
 
+    // reload from database
+    fetch(zcApiUrl);
+}
+
+function nextPg() {
+    defineZipCode(zipCode);
+
+    // Validate the ZIP code and execute the callback if it's valid
+    if (isProbablyValidUSZipCode(zipCode)) {
+    } else {
+        alert("Please enter a valid ZIP code.");
+    }
+}
+
+// Modify this function to include the redirection logic
+function redirectToVolOppL() {
+    // Redirect to the volOppList view
+    window.location.href = "../volOppL/volOppL.html";
+}
+
+function handleEnterKeyPress(event) {
+    if (event.key === "Enter") {
+        nextPg();
+    }
+}
+
+
+function isProbablyValidUSZipCode(zipCode) {
+    // First, check with the regex method for quick validation
+    let regex = /^[0-9]{5}(?:-[0-9]{4})?$/;
+    if (regex.test(zipCode)) {
+        return true;
+    }
+
+    // If regex test fails, then check against your original patterns
+    let patterns = ["#####", "#####-####"];
+    for (let pattern of patterns) {
+        if (checkAgainstPattern(zipCode, pattern)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+function checkAgainstPattern(zipCode, pattern) {
+    if (zipCode.length !== pattern.length) {
+        return false;
+    }
+
+    for (let i = 0; i < pattern.length; i++) {
+        let c = zipCode.charAt(i);
+        switch (pattern.charAt(i)) {
+            case '#':
+                if (!isDigit(c)) {
+                    return false;
+                }
+                break;
+
+            default:
+                if (c !== pattern.charAt(i)) {
+                    return false;
+                }
+        }
+    }
+    return true;
+}
+
+function isDigit(character) {
+    return character >= '0' && character <= '9';
+}
+
+
+// Toggle opportunity type tab
+function oppTabToggle() {
+    localStorage.setItem('volOppTab', !localStorage.getItem("volOppTab"));
+    window.location.href = "../donOpp/donOpp.html";
+}
 
 // ----- Initial Script Logic -----
 

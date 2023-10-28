@@ -153,7 +153,7 @@ function displayVolOpp(data) {
                 let orgSite = itemsArray[r].website;
                 let orgPhoneNum = itemsArray[r].phoneNum;
                 let oppLocation = itemsArray[r].location;
-
+                
 
                 console.log("orgName" + orgName +
                 " money needed" + moneyNeeded 
@@ -174,6 +174,7 @@ function displayVolOpp(data) {
                     <p>Itmes Needed: ${itemsNeeded}</p>
                     <p>Phone #: ${orgPhoneNum}</p>
                     <p>Location: ${oppLocation}</p>
+                    <p>Distance: ${Math.round((distance * 0.621371) * 10) / 10} mi</p>
                 
                 `
 

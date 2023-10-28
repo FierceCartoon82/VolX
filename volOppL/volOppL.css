@@ -228,6 +228,11 @@ header {
     font-weight: bold;
 }
 
+#cards-container .card-header:hover {
+    text-decoration: underline;
+    color: #007bff; /* The same blue color */
+}
+
 
 .sectionTitles {
     font-size: 36px;
@@ -236,7 +241,22 @@ header {
     text-align: left;
     padding-left: 15px;
 }
-  
+
+
+/* Date and Time display icon formatting */
+time.icon
+{
+  font-size: 1em; /* change icon size */
+  display: block;
+  position: relative;
+  width: 7em;
+  height: 7em;
+  background-color: #fff;
+  border-radius: 0.6em;
+  box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+  overflow: hidden;
+}
+
   
 
 /* Styles for the bottom tab bar */
@@ -277,3 +297,69 @@ header {
     background-color: #264025;
   }
   
+  .wrapper {
+    background-color: rgb(199, 209, 199);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black; /* Added black border under the month and year */
+    padding-bottom: 10px;
+  }
+  
+  .current-date {
+    color: white;
+    font-size: 24px;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .calendar {
+    margin-top: 20px;
+  }
+  
+  .day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    border-bottom: 3px solid black; /* Thickness of the border */
+    padding-bottom: 20px; /* Increased padding to move the line further down */
+  }
+  
+  
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .day-names span, .days-grid span {
+    background-color: white;
+    padding: 40px; /* Reduced padding */
+    display: flex;
+    align-items: center; /* Align to center */
+    justify-content: center; /* Align to center */
+    position: relative;
+  }
+  
+  .days-grid span::before {
+    content: attr(data-day);
+    position: absolute;
+    top: 10px; /* Position to top left */
+    left: 10px; /* Position to top left */
+    background-color: transparent; /* No background */
+    color: black; /* Change this to your preferred color if needed */
+    padding: 0; /* Remove padding */
+  }
+  
+
+  
+ 
