@@ -125,3 +125,127 @@ header {
 }
 
 
+/* Header styling */
+.section-Titles {
+    font-family: quickSand;
+}
+
+
+
+
+/* Results section */
+.results-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Space between each result */
+    margin-top: 20px;
+    padding-bottom: 20px; /* To give some breathing space at the bottom */
+}
+
+.result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw; /* Make it responsive to viewport width */
+    background-color: #f7f7f7; /* Light grey background for each card */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.result-card a {
+    color: #186920; /* Giving it the same green color as the search button */
+    text-decoration: none; /* Removing underline from link */
+}
+
+.result-card a:hover {
+    text-decoration: underline; /* Underline on hover for feedback */
+}
+
+
+
+/* CSS for organization cards based on the provided template */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+#cards-container .card {
+    position: relative;
+    background-color: #e3dfdf;
+    padding: 20px;
+    width: 90vw;
+    border-radius: 10px;
+    filter: drop-shadow(0 5px 10px 0 #ffffff);
+    transition: 0.6s ease-in;
+    margin-bottom: 25px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: left; /* Center the content horizontally */
+}
+
+#cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Horizontally center the cards */
+}
+
+#cards-container .card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: -15px;
+    background: #186920; /* Set the bar color to green */
+    height: 100%;
+    width: 25px;
+    border-radius: 0;
+    transform: scale(0.8);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+}
+
+#cards-container .card:hover::before {
+    background: #186920; /* Change the bar color to green on hover */
+    transition-delay: 0.2s;
+    transform: scale(1.0); /* Modify the scaling effect */
+}
+
+#cards-container .card:hover {
+    background: #b4b7b4; /* Change the entire card background color to green on hover */
+    color: #ffffffc3; /* Change the text color to white on hover */
+}
+
+#cards-container .card h4 {
+    font-size: 18px;
+    text-align: left;
+}
+
+#cards-container .card p {
+    padding: 5px 0;
+    text-align: left;
+}
+
+/* Add CSS for links if needed */
+#cards-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.sectio-Titles {
+    font-size: 36px;
+    font-weight: 700;
+    padding-bottom: 15px; /* Add padding between the header and the first card */
+    text-align: left;
+    padding-left: 15px;
+}
+  
+  
+
+

@@ -1,3 +1,6 @@
+
+
+
 // variables
 let zipCode = localStorage.getItem("zipCode");
 localStorage.setItem("listView", true);

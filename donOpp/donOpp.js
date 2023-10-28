@@ -162,28 +162,23 @@ function displayVolOpp(data) {
                 + " oppDistance" + distance 
                 + " orgSite" + orgSite
                 + " orgp#" + orgPhoneNum);
+
+                const cardsContainer = document.getElementById("cards-container");
+
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const cardContent = `
+                    <h4><a href="${orgSite}" target="_blank">${orgName}</a></h4>
+                    <p>Money Needed: ${moneyNeeded}</p>
+                    <p>Itmes Needed: ${itemsNeeded}</p>
+                    <p>Phone #: ${orgPhoneNum}</p>
+                    <p>Location: ${oppLocation}</p>
                 
-                
+                `
 
-                // Create a new row at the end of the table body
-                const dataTable = document.getElementById("data-table");
-                const newRow1 = dataTable.insertRow(-1);
-                newRow1.classList.add("first-row"); // Add a class to the first row
-
-                const newRow2 = dataTable.insertRow(-1);
-                const newRow3 = dataTable.insertRow(-1);
-                const newRow4 = dataTable.insertRow(-1);
-                const newRow5 = dataTable.insertRow(-1);
-
-
-                
-
-                // Create and populate cells for each variable and its value using .innerHTML
-                newRow1.insertCell(0).innerHTML =  orgName;
-                newRow2.insertCell(0).innerHTML = "Distance: " + oppDistance + "      Date: " + oppDate; 
-                newRow3.insertCell(0).innerHTML = "Time: " + oppTime;
-                newRow4.insertCell(0).innerHTML = "Location: " + oppLocation;
-                newRow5.insertCell(0).innerHTML = "Phone #: " + orgPhoneNum;
+                card.innerHTML = cardContent;
+                cardsContainer.appendChild(card);
                 
 
 
