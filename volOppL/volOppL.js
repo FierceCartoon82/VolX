@@ -222,6 +222,7 @@ function displayVolOpp(data) {
                 let oppDistance = distance;
                 let orgSite = databaseArray[r].website;
                 let orgPhoneNum = databaseArray[r].phoneNum;
+                let orgLogo = databaseArray[r].logo;
 
 
                 console.log("orgName" + orgName +
@@ -244,15 +245,15 @@ function displayVolOpp(data) {
                     <p>Date: ${oppDate} | Time: ${oppTime}</p>
                     <p>Location: ${oppLocation}</p>
                     <p>Phone #: ${orgPhoneNum}</p>
-                `;
+                    
+                `
 
                 card.innerHTML = cardContent;
                 cardsContainer.appendChild(card);
                     };
                 }
                 
-                // Call the function to create organization cards
-                createOrganizationCards(databaseArray[r]);
+                // Call the function to create organization car
 
                 
 
@@ -262,7 +263,10 @@ function displayVolOpp(data) {
 
 
 
-
+// function to toggle tabs
+function viewTabToggle() {
+    window.location.href = "../volOppC/volOppC.html";
+}
 
 // JavaScript function to return users to the home screen
 function goToHomeScreen() {
