@@ -2,10 +2,23 @@
 let txtBx = document.getElementById("textBox");
 localStorage.setItem("zipCode", localStorage.getItem("zipCode")); // add parseint() if required
 let zipCode = localStorage.getItem("zipCode");
-console.log(zipCode);
 localStorage.setItem("listView", true);
+txtBx.placeholder = "Donation Opportunities near " + zipCode;
+
+// zipcode api code
+const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=321891d0-745c-11ee-983d-014c610a2320&code=${zipCode}&radius=40&country=us`;
 
 
+function defineZipCode() {
+    let txtBx = document.getElementById("textBox");
+    zipCode = txtBx.value;
+    localStorage.setItem('zipCode', zipCode); // add parseint() if required
+    txtBx.placeholder = "Donation Opportunities near " + zipCode;
+    txtBx.value = "";
+
+    // reload from database
+    fetchData(databaseArray);
+}
 
 function nextPg() {
     defineZipCode(zipCode);
@@ -76,16 +89,11 @@ function isDigit(character) {
 }
 
 
-
-
-
 // Toggle opportunity type tab
 function oppTabToggle() {
     localStorage.setItem('volOppTab', !localStorage.getItem("volOppTab"));
     window.location.href = "../donOpp/donOpp.html";
 }
-
-
 
 
 
@@ -103,7 +111,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Array to store data from the database
-let itemsArray = [];
+let databaseArray = [];
 
 // Function to retrieve data from the database
 function getItemsFromFirestore() {
@@ -126,7 +134,7 @@ function getItemsFromFirestore() {
 // Use an async function to wait for the Firestore data to be fetched
 async function fetchData(apiZipCodes) {
     try {
-        itemsArray = await getItemsFromFirestore();
+        databaseArray = await getItemsFromFirestore();
         displayVolOpp(apiZipCodes);
     } catch (error) {
         console.error(error);
@@ -135,7 +143,7 @@ async function fetchData(apiZipCodes) {
 
 // USE ZIPCODE BASE TO RETURN LIST OF ZIPCODES WITHIN A DISTANCE OF 25 MILES
 // construct API url
-/*const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=321891d0-745c-11ee-983d-014c610a2320&code=${zipCode}&radius=40&country=us`;
+
 
 // Make the API request
 fetch(zcApiUrl)
@@ -148,14 +156,15 @@ fetch(zcApiUrl)
   .then(data => {
     // 'data.results' to get array for list of zipCodes in the range
 
+    console.log("ZIPCODE RADIUS JUST FETCHED")
+    console.log(data)
     fetchData(data); // Call the function to fetch and display data from Firebase (pass the ZipCode in the parameter)
   })
   .catch(error => {
     // Handle errors here
     console.error('Error:', error);
   });
-*/
-  
+
 
 //fetchData(); // Call the function to fetch and display data
 
@@ -166,15 +175,15 @@ function displayVolOpp(data) {
     console.log(data);
     console.log(data.results);
     // go through every row in database
-    for (let r = 0; r < itemsArray.length; r++) {
+    for (let r = 0; r < databaseArray.length; r++) {
         // check if row is volunteer opportunities
         // (if first letter of V/D is 'v' then confirm)
-        if (itemsArray[r].V_or_D.charAt(0).toLowerCase() === 'v') {
+        if (databaseArray[r].V_or_D.charAt(0).toLowerCase() === 'v') {
             // get last 5 digits of address (for the ZipCode)
             // first convert the digits to integer
             console.log("yes it is volunteer");
-            console.log(itemsArray[r]);
-            let volOppZipCode = itemsArray[r].location.slice(-5);
+            console.log(databaseArray[r]);
+            let volOppZipCode = databaseArray[r].location.slice(-5);
             let inRange = false;
             let distance = 0;
             console.log(volOppZipCode);
@@ -188,8 +197,12 @@ function displayVolOpp(data) {
                 console.log(inRange);
             } else {
                 // loop through each value in array
+                console.log("cp1");
+                console.log(data);
                 for (let i = 0; i < data.results.length; i++) {
-                    if (data.results[i].location === volOppZipCode) {
+                    console.log(data.results[i]);
+                    if (data.results[i].code === volOppZipCode) {
+                        console.log("cp2");
                         inRange = true;
                         distance = data.results[i].distance;
                         console.log(inRange + " " + distance);
@@ -202,15 +215,14 @@ function displayVolOpp(data) {
 
             // if the distance is under a certain amount then proceed
             if (inRange) {
-                console.log("we made it to the data spot!")
-                // store data for opportuntity then display
-                let orgName = itemsArray[r].organizationName;
-                let oppDate = itemsArray[r].date;
-                let oppTime = itemsArray[r].time;
-                let oppLocation = itemsArray[r].location;
+                let orgName = databaseArray[r].organizationName;
+                let oppDate = databaseArray[r].date;
+                let oppTime = databaseArray[r].time;
+                let oppLocation = databaseArray[r].location;
                 let oppDistance = distance;
-                let orgSite = itemsArray[r].website;
-                let orgPhoneNum = itemsArray[r].phoneNum;
+                let orgSite = databaseArray[r].website;
+                let orgPhoneNum = databaseArray[r].phoneNum;
+
 
                 console.log("orgName" + orgName +
                 " oppDate" + oppDate 
@@ -219,10 +231,34 @@ function displayVolOpp(data) {
                 + " oppDistance" + oppDistance 
                 + " orgSite" + orgSite
                 + " orgp#" + orgPhoneNum);
+
+                
+                const cardsContainer = document.getElementById("cards-container");
+
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const cardContent = `
+                    <h4><a href="${orgSite}" target="_blank">${orgName}</a></h4>
+                    <p>Distance: ${oppDistance}</p>
+                    <p>Date: ${oppDate} | Time: ${oppTime}</p>
+                    <p>Location: ${oppLocation}</p>
+                    <p>Phone #: ${orgPhoneNum}</p>
+                `;
+
+                card.innerHTML = cardContent;
+                cardsContainer.appendChild(card);
+                    };
+                }
+                
+                // Call the function to create organization cards
+                createOrganizationCards(databaseArray[r]);
+
+                
+
             }
         }
-    }
-}
+    
 
 
 

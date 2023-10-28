@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
         </head>
 
 
@@ -19,6 +20,8 @@
             <!-- Logo in center with an onclick event to return to the home screen -->
             <img class="centered-logo" src="../images/VolXLogo.PNG" alt="logo" onclick="goToHomeScreen()">
         </header>
+        
+        <div id="cards-container"></div>
 
 
         <!--Small Search Bar with previously entered Zip Code-->
@@ -40,45 +43,21 @@
         </div>
 
         <!--Header for partners-->
-        <h2 class="sectionTitles" align="left">VolX Partner Organizations</h2>
+        <h2 class="sectionTitles" align ="left">VolX Partner Organizations</h2>
 
         <!--Partner Content-->
-        <table id="data-table">
-            <thead>
-                <tr>
-                    <th>Organization Name</th>
-                    <th>Next Volunteer Opportunity date</th>
-                    <th>Next Volunteer Opportunity time</th>
-                    <th>Next Volunteer Opportunity location</th>
-                    <th>Website</th>
-                    <th>Phone #</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Org. Name</td>
-                    <td>Date</td>
-                    <td>Time</td>
-                    <td>Location</td>
-                    <td>Website</td>
-                    <td>Phone #</td>
-                </tr>
-                <!-- Other rows... -->
-            </tbody>
-        </table>
+        <section class="organizations">
+        <table id = "data-table">
+         
+          </table>
         
-
-
-
-
-
-
 
 
 
 
         <!--Header for crawled-->
         <h2 class="sectionTitles" align="left">Other Nearby Organizations</h2>
+        <iframe src="https://www.volunteermatch.org/search/orgs.jsp?aff=&includeOnGoing=true&r=20.0&categories=19&l=Edison%2C+NJ+08817%2C+USA" width="100%" height="500"></iframe>
 
         <!-- Crawled content -->
         <div id="results" class="results-section"></div>
