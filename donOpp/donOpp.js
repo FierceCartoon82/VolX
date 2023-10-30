@@ -78,7 +78,7 @@ async function fetchData(apiZipCodes) {
 
 // USE ZIPCODE BASE TO RETURN LIST OF ZIPCODES WITHIN A DISTANCE OF 25 MILES
 // construct API url
-const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=321891d0-745c-11ee-983d-014c610a2320&code=${zipCode}&radius=40&country=us`;
+const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=a960f3b0-76ba-11ee-828f-3fb09205c01b&code=${zipCode}&radius=40&country=us`;
 
 // Make the API request
 fetch(zcApiUrl)
@@ -153,6 +153,7 @@ function displayVolOpp(data) {
                 let orgSite = itemsArray[r].website;
                 let orgPhoneNum = itemsArray[r].phoneNum;
                 let oppLocation = itemsArray[r].location;
+                let orgLogo = itemsArray[r].logo;
                 
 
                 console.log("orgName" + orgName +
@@ -169,12 +170,33 @@ function displayVolOpp(data) {
                 card.className = "card";
 
                 const cardContent = `
-                    <h4><a href="${orgSite}" target="_blank">${orgName}</a></h4>
-                    <p>Money Needed: ${moneyNeeded}</p>
-                    <p>Itmes Needed: ${itemsNeeded}</p>
-                    <p>Phone #: ${orgPhoneNum}</p>
-                    <p>Location: ${oppLocation}</p>
-                    <p>Distance: ${Math.round((distance * 0.621371) * 10) / 10} mi</p>
+                    <div class="card-content">
+                            <!-- Column #1 -->
+                            <table border="0" width="200px" style="margin-right:400px">
+                                <tr>
+                                    <td><h4 style="text-align: center; font-size: 25px;""><a href="${orgSite}" target="_blank">${orgName}</a></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="${orgLogo}" alt="${orgName} logo" style="height: 25vh; width: auto;"></td>
+                                </tr>
+                            </table>
+
+                            <!-- Column #2 -->
+                            <table border="0">
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-money-bill"> Fundraising Goal: ${moneyNeeded}</i></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-bicycle"> Items Needed: ${itemsNeeded}</i></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-phone"> Phone #: ${orgPhoneNum}</i></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-phone"><i class="fa-solid fa-car"> Distance: ${Math.round((distance * 0.621371) * 10) / 10} mi</i></p></td>
+                                </tr>
+                            </table>
+                        </div>
                 
                 `
 

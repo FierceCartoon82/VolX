@@ -50,14 +50,16 @@
             populated using javascript -->
         
             <div id="cards-container"><div id="dataContainer"></div></div>
-
+            <div id = "card-container" ></div>
 
         <!-- Bottom tab bar (Calendar & List)-->
         <div class="bottom-tab-bar">
-            <button class="bottom-tab-button active"><i class="fa-solid fa-list"></i></button>
-            <button class="bottom-tab-button" onclick="viewTabToggle()"><i class="fa-regular fa-calendar"></i></button>
+            <div class="icon-container">
+                <button class="bottom-tab-button active"><i class="fa-solid fa-list"></i></button>
+                <button class="bottom-tab-button" onclick="viewTabToggle()"><i class="fa-regular fa-calendar"></i></button>
+            </div>
         </div>
-
+        
         <!-- Linking to firebase -->
         <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.0/firebase-firestore.js"></script>

@@ -136,13 +136,20 @@ header {
 
 .result-card {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80vw; /* Make it responsive to viewport width */
-    background-color: #f7f7f7; /* Light grey background for each card */
+    flex-direction: row; /* Make the items inside the card align horizontally */
+    align-items: center; /* Align the items vertically centered */
+    justify-content: space-between; /* Distribute the space between the items */
+    width: 80vw; 
+    background-color: #f7f7f7;
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-icon {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    margin-left: 15px; /* Space between the calendar icon and the card content */
 }
 
 .result-card a {
@@ -177,6 +184,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: left; /* Center the content horizontally */
+    display: flex; 
 }
 
 #cards-container {
@@ -228,36 +236,104 @@ header {
     font-weight: bold;
 }
 
-#cards-container .card-header:hover {
+.card-header:hover {
     text-decoration: underline;
     color: #007bff; /* The same blue color */
 }
 
+.cards {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 27px;
+    font-weight: bold;
+    text-align: center;
+    width: 80px;
+    background: #ededef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededef), to(#ccc));
+    background: -moz-linear-gradient(top, #ededef, #ccc);
+    text-shadow: #fff 0 1px 0;
+    border-radius: 3px;
+    position: relative;
+    box-shadow: 0 2px 2px #888;
+    margin: 100px auto;
+ 
+}
 
-.sectionTitles {
-    font-size: 36px;
-    font-weight: 700;
-    padding-bottom: 15px; /* Add padding between the header and the first card */
-    text-align: left;
-    padding-left: 15px;
+.cards h4 {
+    color: #000;
+    font-size: 30px;
+}
+
+.cards p {
+    font-size: 11px;
+    color: #fff;
+    text-shadow: #05814b 0 -1px 0;
+    background: #EE0B0B;
+    background: -webkit-gradient(linear, left top, left bottom, from(#EE0B0B), to(#AF0C0C));
+    background: -moz-linear-gradient(top, #EE0B0B, #AF0C0C);
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #860000;
+    max-width: 200px; 
 }
 
 
-/* Date and Time display icon formatting */
-time.icon
-{
-  font-size: 1em; /* change icon size */
-  display: block;
-  position: relative;
-  width: 7em;
-  height: 7em;
-  background-color: #fff;
-  border-radius: 0.6em;
-  box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
-  overflow: hidden;
+.cards:before,
+.cards:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    background: #111;
+    z-index: 1;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px #fff;
 }
 
-  
+.cards:before {
+    left: 11px;
+}
+
+.cards:after {
+    right: 11px;
+}
+
+.cards .month:before,
+.cards .month:after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    width: 4px;
+    height: 14px;
+    background: #dadada;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#aaa));
+    background: -moz-linear-gradient(top, #f1f1f1, #aaa);
+    z-index: 2;
+    border-radius: 2px;
+}
+
+.cards .month:before {
+    left: 13px;
+}
+
+.cards .month:after {
+    right: 13px;
+}
+
+.cards .day {
+    font-size: 11px;
+}
+
+
+/* style card content */
+/* styling for all tables overall */
+.card-content {
+    font-family: "Arial, Helvetica, sans-serif";
+    display: flex;
+
+  }
+
+
 
 /* Styles for the bottom tab bar */
 
@@ -272,7 +348,7 @@ time.icon
     z-index: 1;
     box-shadow: 0px -3px 10px rgba(8, 8, 8, 0.2);
   }
-  
+
   .bottom-tab-button {
     padding: 10px 20px;
     color: white;
@@ -284,7 +360,10 @@ time.icon
     background-color: #16691f;
     border: 1px solid #6b6b6b;
     border-radius: 15px;
+    margin: 0 300px;
   }
+  
+  
   
   /* Style for the active tab */
   .active {
@@ -297,69 +376,5 @@ time.icon
     background-color: #264025;
   }
   
-  .wrapper {
-    background-color: rgb(199, 209, 199);
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid black; /* Added black border under the month and year */
-    padding-bottom: 10px;
-  }
-  
-  .current-date {
-    color: white;
-    font-size: 24px;
-  }
-  
-  .icons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .calendar {
-    margin-top: 20px;
-  }
-  
-  .day-names {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    border-bottom: 3px solid black; /* Thickness of the border */
-    padding-bottom: 20px; /* Increased padding to move the line further down */
-  }
-  
-  
-  .days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .day-names span, .days-grid span {
-    background-color: white;
-    padding: 40px; /* Reduced padding */
-    display: flex;
-    align-items: center; /* Align to center */
-    justify-content: center; /* Align to center */
-    position: relative;
-  }
-  
-  .days-grid span::before {
-    content: attr(data-day);
-    position: absolute;
-    top: 10px; /* Position to top left */
-    left: 10px; /* Position to top left */
-    background-color: transparent; /* No background */
-    color: black; /* Change this to your preferred color if needed */
-    padding: 0; /* Remove padding */
-  }
-  
-
-  
  
+

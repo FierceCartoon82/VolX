@@ -2,11 +2,10 @@
 let txtBx = document.getElementById("textBox");
 localStorage.setItem("zipCode", localStorage.getItem("zipCode")); // add parseint() if required
 let zipCode = localStorage.getItem("zipCode");
-localStorage.setItem("listView", true);
 txtBx.placeholder = "Donation Opportunities near " + zipCode;
 
 // zipcode api code
-const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=321891d0-745c-11ee-983d-014c610a2320&code=${zipCode}&radius=40&country=us`;
+const zcApiUrl = `https://app.zipcodebase.com/api/v1/radius?apikey=a960f3b0-76ba-11ee-828f-3fb09205c01b&code=${zipCode}&radius=40&country=us`;
 
 
 // JAVASCRIPT FOR VOLX PARTNERS:
@@ -160,21 +159,40 @@ function displayVolOpp(data) {
 
                 // Wrap the card container with an anchor element and set the href
                 const cardContent = `
-                    <a href="${orgSite}" target="_blank">
                         <div class="card-content">
-                        <!-- Inside the card content -->
-                        <h4 class="card-header"> <a href="${orgSite}" target="_blank">${orgName}</a> </h4>
-                            <p>Distance: ${Math.round((oppDistance * 0.621371) * 10) / 10} mi</p>
-                            <p>Date: ${oppDate} | Time: ${oppTime}</p>
-                            <p>Location: ${oppLocation}</p>
-                            <p>Phone #: ${orgPhoneNum}</p>
+                            <!-- Column #1 -->
+                            <table border="0" width="200px" style="margin-right:400px">
+                                <tr>
+                                    <td><h4 style="text-align: center; font-size: 25px;""><a href="${orgSite}" target="_blank">${orgName}</a></h4></td>
+                                </tr>
+                                <tr>
+                                    <td><img src="${orgLogo}" alt="${orgName} logo" style="height: 25vh; width: auto;"></td>
+                                </tr>
+                            </table>
+
+                            <!-- Column #2 -->
+                            <table border="0">
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-car"> Distance: ${Math.round((oppDistance * 0.621371) * 10) / 10} mi</i></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-clock"> Time: ${oppTime}</i></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-map-pin"> Location: ${oppLocation}</i></p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="card-details"><i class="fa-solid fa-phone"> Phone #: ${orgPhoneNum}</i></p></td>
+                                </tr>
+                            </table>
                         </div>
-                    </a>
                 `;
 
                 card.innerHTML = cardContent;
                 cardLink.appendChild(card);
                 cardsContainer.appendChild(cardLink);
+
+               
                     };
                 }
                 

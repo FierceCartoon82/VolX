@@ -1,7 +1,132 @@
+/* CSS FOR CALENDAR VIEW */
+/* Reset default styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial, Helvetica, sans-serif"; /* Change the font to Arial or your desired font */
+  background-color: #ffffff;
+}
+
+/* Improved styles for the wrapper */
+.wrapper {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100vh; /* Make the wrapper occupy the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+
+.calTopBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #124c18;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  font-size: 24px;
+  padding: 20px;
+}
+
+/* Styles for the current date text */
+.current-date {
+  font-size: 18px;
+}
+
+/* Styles for the icons */
+.icons {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Styles for day names and grid */
+.day-names, .days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #fff;
+  border-radius: 10px; /* Add rounded edges */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for day names */
+.day-names {
+  border-bottom: 1px solid #d1d1d1;
+  padding: 10px 0;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Style for day cells */
+.days-grid span {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start; /* Align the number to the top-left corner */
+  border: 1px solid #d1d1d1;
+  cursor: pointer;
+  position: relative;
+  padding: 20px 20px 100px 20px; /* Increase the bottom padding to add more white space below */
+  font-size: 18px;
+  color: #333;
+  font-family: "San Francisco, Arial, Helvetica, sans-serif"; /* Change the font to your desired font */
+  border-radius: 10px; /* Add rounded edges */
+}
+
+/* Style for day numbers */
+.days-grid span::before {
+  content: attr(data-day);
+  padding: 5px 10px; /* Add padding for the number to position it in the top-left corner */
+  align-self: flex-start; /* Align the number to the top of the cell */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Add media query for responsiveness */
+@media screen and (max-width: 800px) {
+  .wrapper {
+    padding: 10px;
+    border-radius: 10px; /* Keep the border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Keep the shadow */
+    background-color: #ffffff; /* Keep the white background */
+    max-width: 100%;
+    margin: 0;
+    font-size: 16px; /* Slightly increase font size for readability */
+    box-sizing: border-box; /* Adjust box-sizing for consistency */
+    padding: 20px; /* Increase padding for better spacing */
+  }
+
+  /* Styles for mobile display */
+  .current-date {
+    font-size: 20px; /* Increase font size for better visibility */
+  }
+
+  .icons {
+    font-size: 24px; /* Keep the icon size */
+  }
+
+  .day-names {
+    font-size: 16px; /* Increase font size for readability */
+  }
+
+  .days-grid span {
+    font-size: 20px; /* Increase font size for better visibility */
+  }
+}
+
+
+/* CSS FOR REST OF PAGE*/
 /*header & logo styling*/
 header {
   height: 60px;
-  text-align: center; /* Center-align text */
+  position: center;
+  text-align: center;
+  background-color: white;
 }
 
 .centered-logo {
@@ -13,33 +138,53 @@ header {
   height: auto;
 }
 
-/* Search bar styling */
+/*INPUT STYLING*/
+/* Style the container for the input box */
 .input-container {
   display: flex;
-  justify-content: center;
-  margin: 20px;
+  position: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  z-index: 1;
 }
 
 .styled-input {
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 200px;
+  padding: 15px; /* 5% of the parent container's width */
+  border: 3px solid #ccc; /* 3px border */
+  border-radius: 10px;
+  font-size: 16px; /* 3% of the viewport width */
+  width: 100vw; /* 80% of the parent container's width */
+  height: 16px;
+  transition: border 0.3s;
 }
 
+/* Style the input box when it's in focus (clicked) */
+.styled-input:focus {
+  border-color: #186920;
+}
+
+/* Style the search button */
 .search-button {
-  background-color: #4CAF50;
+  background-color: #186920; /* Green background color */
+  color: #fff; /* White text color */
   border: none;
-  color: white;
-  padding: 10px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  border-radius: 10px;
+  padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
+  width: 5%; /* Adjust width as needed */
+  margin-left: 5px;
+  min-width: 50px;
+}
+
+/* Style the search button icon (Font Awesome) */
+.search-button i {
+  font-size: 20px;
+}
+
+/* Style the search button on hover for feedback */
+.search-button:hover {
+  background-color: #0b350f; /* Slightly darker green on hover */
 }
 
 
@@ -81,66 +226,40 @@ header {
   background-color: #264025;
 }
 
-
-.wrapper {
-  background-color: rgb(199, 209, 199);
-  padding: 20px;
-  font-family: Arial, sans-serif;
+/* Styling for content (overall box) */
+.oppContent {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  background-color: rgb(96, 183, 107);
+  border-radius: 15px;
+  font-family: 'Quicksand', sans-serif;
+  color: #000; /* Set the font color to black by default */
+  transition: background-color 0.2s, color 0.2s; /* Add transition effect */
+  width: auto;
 }
 
-header {
+.oppContent:hover {
+  background-color: #186920; /* Change background color to a darker shade of green on hover */
+  color: #fff; /* Set the font color to white on hover */
+  border-radius: 15px; /* Add curved edges on hover */
+}
+
+/* styling for text in box */
+.oppTitle {
+  color: #007bff;
+  margin-top: -0.15vh;
+  font-size: 1.35vw; 
+  font-weight: bold;
+}
+
+.oppTime {
+  width: 100%;
+  font-size: 0.85vw; 
+  margin-top: -1.0vh;
+}
+
+.card-content {
+  font-family: "Arial, Helvetica, sans-serif";
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid black; /* Added black border under the month and year */
-  padding-bottom: 10px;
-}
-
-.current-date {
-  color: white;
-  font-size: 24px;
-}
-
-.icons {
-  display: flex;
-  gap: 10px;
-}
-
-.calendar {
-  margin-top: 20px;
-}
-
-.day-names {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-  border-bottom: 3px solid black; /* Thickness of the border */
-  padding-bottom: 20px; /* Increased padding to move the line further down */
-}
-
-
-.days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.day-names span, .days-grid span {
-  background-color: white;
-  padding: 40px; /* Reduced padding */
-  display: flex;
-  align-items: center; /* Align to center */
-  justify-content: center; /* Align to center */
-  position: relative;
-}
-
-.days-grid span::before {
-  content: attr(data-day);
-  position: absolute;
-  top: 10px; /* Position to top left */
-  left: 10px; /* Position to top left */
-  background-color: transparent; /* No background */
-  color: black; /* Change this to your preferred color if needed */
-  padding: 0; /* Remove padding */
 }
